@@ -1,4 +1,3 @@
-import java.util.Date;
 
 public class IndividualPackage extends TravelPackage{
     private String addOn;
@@ -8,10 +7,6 @@ public class IndividualPackage extends TravelPackage{
             String details, String addOn) {
         super(pacakageId, packageName, location, price, days, details);
         this.addOn = addOn;
-    }
-
-    public void buyPackage(){
-        
     }
 
     @Override

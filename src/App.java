@@ -8,13 +8,16 @@ public class App {
 
         while (true) {
             System.out.println("=== Menu ===");
-            System.out.println("1. Add Package\n2. Add Customer\n3. Display Package\n4. Buy Package\n5. Exit");
+            System.out.println("1. Add Package\n2. Add Customer\n3. Display Package\n4. Buy Package\n5. Display Customer\n6. Exit");
             int choice = input.nextInt();
-
+            input.nextLine();
             switch (choice) {
                 case 1:
+                    System.out.println("---------------------");
                     System.out.println("1. Individual Package\n2. Group Package");
                     int packageType = input.nextInt();
+                    input.nextLine();
+                    System.out.println("---------------------");
                     if (packageType == 1){
                         packageManagement.addIndividualPackage();
                         
@@ -23,16 +26,21 @@ public class App {
                     }
                     break;
                 case 2:
+                    packageManagement.addCustomer();
                     break;
                 case 3:
                     packageManagement.showPackage();
                     break;
                 case 4:
+                    packageManagement.buyPackage();
                     break;
                 case 5:
+                    packageManagement.showCustomer();
+                    break;
+                case 6:
                     break;
             }
-            if (choice == 5){
+            if (choice == 6){
                 break;
             }
         }

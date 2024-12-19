@@ -1,4 +1,3 @@
-import java.util.Date;
 
 public class TravelPackage {
     protected int pacakageId;
@@ -6,7 +5,6 @@ public class TravelPackage {
     protected String location;
     protected int price;
     protected int days;
-    protected Date start;
     protected String details;
 
     public TravelPackage(int pacakageId, String packageName, String location, int price, int days, String details) {
@@ -18,12 +16,14 @@ public class TravelPackage {
         this.details = details;
     }
 
+    public String getPackageName() {
+        return packageName;
+    }
+
     public void detailPackage(){
         System.out.println("Package ID: " + pacakageId);
         System.out.println("Destination: " + location);
         System.out.println("Duration: " + days + " days");
         System.out.println("Detail: " + details);
-    }
-    
-    
+    } 
 }

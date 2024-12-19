@@ -4,12 +4,11 @@ import java.util.Scanner;
 public class PackageManagement {
     Scanner input = new Scanner(System.in);
     ArrayList<TravelPackage> packageList = new ArrayList<TravelPackage>();
+    ArrayList<Customer> customerList = new ArrayList<Customer>();
 
     public void addIndividualPackage(){
-        System.out.print("Package ID: ");
-        int packageId = input.nextInt();
+        int packageId = (packageList.size()) + 1;
 
-        input.nextLine();
         System.out.print("Package Name: ");
         String packageName = input.nextLine();
 
@@ -67,5 +66,68 @@ public class PackageManagement {
         for (TravelPackage travelPackage : packageList){
             travelPackage.detailPackage();
         }
+    }
+
+    public void addCustomer() {
+        int id = (customerList.size()) + 1;
+
+        System.out.print("Name: ");
+        String name = input.nextLine();
+
+        System.out.print("Nationality: ");
+        String nationality = input.nextLine();
+
+        System.out.print("Age: ");
+        int age = input.nextInt();
+
+        input.nextLine();
+
+        customerList.add(new Customer(id, name, nationality, age));
+    }
+
+    public void showCustomer() {
+        for (Customer customer : customerList) {
+            customer.customerDetail();
+        }
+    }
+
+    public void buyPackage() {
+        Customer customerObj = loginCustomer();
+        if (customerObj == null){
+            return;
+        }
+        System.out.println("Choose the package: ");
+        int choose = input.nextInt();
+        input.nextLine();
+
+        TravelPackage packageChoosen = packageList.get(choose-1);
+
+        if (packageChoosen instanceof IndividualPackage){
+            IndividualPackage packaged = (IndividualPackage) packageChoosen;
+            customerObj.buyPackage(packaged.getPackageName());
+        }else if (packageChoosen instanceof GroupPackage){
+            GroupPackage packaged = (GroupPackage) packageChoosen;
+            customerObj.buyPackage(packaged.getPackageName());
+        }
+    }
+
+    public Customer loginCustomer(){
+        Customer customerObj;
+        showCustomer();
+        System.out.println("Who are you: ");
+        int choose = input.nextInt();
+        input.nextLine();
+
+        for (Customer customer : customerList) {
+            int customerId = customer.getId();
+            if (choose == customerId){
+                customerObj = customer;
+                return customerObj;
+            } 
+        } 
+
+        System.out.println("The Customer Id is not found");
+        return null;
+
     }
 }
