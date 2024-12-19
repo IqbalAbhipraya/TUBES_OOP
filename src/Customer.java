@@ -30,7 +30,7 @@ public class Customer {
             System.out.println();
             System.out.println("Package Bought: ");
             for (String packageName : packageBuyed){
-                System.out.println(packageName);
+                System.out.println("- " + packageName);
             }
         }
 

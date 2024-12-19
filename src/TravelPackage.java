@@ -24,6 +24,7 @@ public class TravelPackage {
         System.out.println("Package ID: " + pacakageId);
         System.out.println("Destination: " + location);
         System.out.println("Duration: " + days + " days");
+        System.out.println("Price: Rp. " + price + " /person");
         System.out.println("Detail: " + details);
     } 
 }

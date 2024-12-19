@@ -9,6 +9,10 @@ public class IndividualPackage extends TravelPackage{
         this.addOn = addOn;
     }
 
+    public String getPackageStatus() {
+        return packageStatus;
+    }
+
     @Override
     public void detailPackage(){
         System.out.println("--------------------------------------");
