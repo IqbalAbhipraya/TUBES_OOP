@@ -89,11 +89,11 @@ public class PackageManagement {
             System.out.print("Nationality: ");
             String nationality = input.nextLine();
 
-            System.out.print("Age: ");
-            int age = input.nextInt();
+            System.out.print("Balance: ");
+            int balance = input.nextInt();
             input.nextLine();
 
-            customerList.add(new Customer(id, name, nationality, age));
+            customerList.add(new Customer(id, name, nationality, balance));
         }catch (Exception e){
             System.out.println("The Input is Invalid, please enter valid input!!");
         }  
@@ -101,6 +101,8 @@ public class PackageManagement {
 
     public void showCustomer() {
         try{
+            System.out.println("--------------------------------------");
+
             for (Customer customer : customerList) {
                 customer.customerDetail();
             }           
@@ -125,10 +127,24 @@ public class PackageManagement {
     
             if (packageChoosen instanceof IndividualPackage){
                 IndividualPackage packaged = (IndividualPackage) packageChoosen;
-                customerObj.buyPackage(packaged.getPackageName());
+                if (payment(packaged, customerObj)){
+                    customerObj.buyPackage(packaged.getPackageName());
+                }
+
             }else if (packageChoosen instanceof GroupPackage){
                 GroupPackage packaged = (GroupPackage) packageChoosen;
-                customerObj.buyPackage(packaged.getPackageName());
+                System.out.println("How many will go with you: ");
+                int numParticipant = input.nextInt();
+                input.nextLine();
+
+                if (numParticipant < packaged.getMinNumber()){
+                    System.out.println("Error, Number of participant is less than the minimum required");
+                    return;
+                }
+                
+                if (payment(packaged, customerObj, numParticipant)){
+                    customerObj.buyPackage(packaged.getPackageName());
+                } 
             }
         }catch (Exception e){
             System.out.println("Data Invalid");
@@ -156,6 +172,64 @@ public class PackageManagement {
         }catch (Exception e){
             System.out.println("Invalid Data");
             return null;
+        }
+    }
+
+    public boolean payment(IndividualPackage packageBuyed, Customer customerBuying){
+        try{
+            System.out.println("Total Payment: " + packageBuyed.getPrice());
+            System.out.print("Input the amount of payent: ");
+            int paymentAmount = input.nextInt();
+            input.nextLine();
+
+            if (customerBuying.getBalance()-paymentAmount<0){
+                System.out.println("Your balance is not enough");
+                return false;
+            }
+            if (paymentAmount < packageBuyed.getPrice()){
+                System.out.println("The amount payment is less then price");
+                return false;
+            }
+
+            int change =  paymentAmount - packageBuyed.getPrice();
+            customerBuying.setBalance(customerBuying.getBalance() - packageBuyed.getPrice());
+            System.out.println("Your change: " + change);
+            System.out.println("Your balance: " + customerBuying.getBalance());
+            return true;
+
+        }catch (Exception e){
+            System.out.println("Input is invalid");
+            return false;
+        }
+    }
+
+    public boolean payment(GroupPackage packageBuyed, Customer customerBuying, int numberParticipant){
+        try{
+            System.out.println("Payment: " + packageBuyed.getPrice() + " x " + numberParticipant);
+            System.out.println("Discount: " + packageBuyed.getGroupDiscount() + "%");
+            int total = (packageBuyed.getPrice() * numberParticipant) * (100-packageBuyed.getGroupDiscount()) / 100;
+            System.out.println("Total :" + total);
+            System.out.print("Input the amount of payent: ");
+            int paymentAmount = input.nextInt() * numberParticipant;
+            input.nextLine();
+
+            if (customerBuying.getBalance()-paymentAmount<0){
+                System.out.println("Your balance is not enough");
+                return false;
+            }
+            if (paymentAmount < total){
+                System.out.println("The amount payment is less then price");
+                return false;
+            }
+
+            int change =  paymentAmount - total;
+            customerBuying.setBalance(customerBuying.getBalance() - total);
+            System.out.println("Your change: " + change);
+            System.out.println("Your balance: " + customerBuying.getBalance());
+            return true;
+        }catch (Exception e){
+            System.out.println("Input is invalid");
+            return false;
         }
     }
 }

@@ -1,5 +1,5 @@
 
-public class TravelPackage {
+public abstract class TravelPackage {
     protected int pacakageId;
     protected String packageName;
     protected String location;
@@ -14,6 +14,10 @@ public class TravelPackage {
         this.price = price;
         this.days = days;
         this.details = details;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public String getPackageName() {
