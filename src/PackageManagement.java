@@ -134,7 +134,7 @@ public class PackageManagement {
             }else if (packageChoosen instanceof GroupPackage){
                 GroupPackage packaged = (GroupPackage) packageChoosen;
                 System.out.println("How many will go with you: ");
-                int numParticipant = input.nextInt();
+                int numParticipant = input.nextInt() + 1;
                 input.nextLine();
 
                 if (numParticipant < packaged.getMinNumber()){
