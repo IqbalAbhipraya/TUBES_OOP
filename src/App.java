@@ -2,47 +2,68 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        @SuppressWarnings("resource")
         Scanner input = new Scanner(System.in);
+        // ArrayList<TravelPackage> packageList = new ArrayList<TravelPackage>();
         PackageManagement packageManagement = new PackageManagement();
 
         while (true) {
-            System.out.println("=== Menu ===");
-            System.out.println("1. Add Package\n2. Add Customer\n3. Display Package\n4. Buy Package\n5. Display Customer\n6. Exit");
-            int choice = input.nextInt();
-            input.nextLine();
-            switch (choice) {
-                case 1:
-                    System.out.println("---------------------");
-                    System.out.println("1. Individual Package\n2. Group Package");
-                    int packageType = input.nextInt();
-                    input.nextLine();
-                    System.out.println("---------------------");
-                    if (packageType == 1){
-                        packageManagement.addIndividualPackage();
-                        
-                    }else if (packageType == 2){
-                        packageManagement.addGroupPackage();
-                    }
+            try{
+                System.out.println("==========================================");
+                System.out.println("|               === Menu ===             |");
+                System.out.println("==========================================");
+                System.out.println("| 1. Add Package                        |");
+                System.out.println("| 2. Add Customer                       |");
+                System.out.println("| 3. Display Package                    |");
+                System.out.println("| 4. Buy Package                        |");
+                System.out.println("| 5. Display Customer                   |");
+                System.out.println("| 6. Top Up Balance Customer            |");
+                System.out.println("| 7. Exit                               |");
+                System.out.println("==========================================");
+                System.out.print("Enter your choice: ");
+                int choice = input.nextInt();
+                input.nextLine();
+                switch (choice) {
+                    case 1:
+                        System.out.println("------------------------------------------");
+                        System.out.println("|        1. Individual Package          |");
+                        System.out.println("|        2. Group Package               |");
+                        System.out.println("------------------------------------------");
+                        System.out.print("Enter package type: ");
+                        int packageType = input.nextInt();
+                        input.nextLine();
+                        System.out.println("------------------------------------------");
+                        if (packageType == 1){
+                            packageManagement.addIndividualPackage();
+    
+                        }else if (packageType == 2){
+                            packageManagement.addGroupPackage();
+                        }
+                        break;
+                    case 2:
+                        packageManagement.addCustomer();
+                        break;
+                    case 3:
+                        packageManagement.showPackage();
+                        break;
+                    case 4:
+                        packageManagement.buyPackage();
+                        break;
+                    case 5:
+                        packageManagement.showCustomer();
+                        break;
+                    case 6:
+                        packageManagement.topUpBalance();
+                        break;
+                    case 7:
+                        break;
+                }
+                if (choice == 7){
                     break;
-                case 2:
-                    packageManagement.addCustomer();
-                    break;
-                case 3:
-                    packageManagement.showPackage();
-                    break;
-                case 4:
-                    packageManagement.buyPackage();
-                    break;
-                case 5:
-                    packageManagement.showCustomer();
-                    break;
-                case 6:
-                    break;
-            }
-            if (choice == 6){
-                break;
+                }
+            }catch (Exception e){
+                System.out.println("Invalid input");
             }
         }
+        input.close(); 
     }
 }

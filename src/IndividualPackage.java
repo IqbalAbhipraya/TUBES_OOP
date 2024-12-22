@@ -1,4 +1,3 @@
-
 public class IndividualPackage extends TravelPackage{
     private String addOn;
 
@@ -11,9 +10,9 @@ public class IndividualPackage extends TravelPackage{
     @Override
     public void detailPackage(){
         System.out.println("--------------------------------------");
-        System.out.println("Package Status: Individual Package");
+        System.out.println("| Package Status: Individual Package |");
         super.detailPackage();
-        System.out.println("Group Add-On: " + addOn);
+        System.out.println("| Group Add-On: " + addOn + "               |");
         System.out.println("--------------------------------------");
 
     }

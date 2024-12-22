@@ -15,10 +15,6 @@ public class Customer {
         this.balance = balance;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public int getBalance() {
         return balance;
     }
@@ -27,17 +23,30 @@ public class Customer {
         this.balance = balance;
     }
 
+    public void topUp(int newBalance) {
+        balance = balance + newBalance;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public void customerDetail() {
-        System.out.println("ID: " + id + " | Name: " + name + " | Nationality: " + nationality + " | Balance: " + balance);
-
-        if (packageBuyed.size() != 0){
-            System.out.println("Package Bought: ");
-            for (String packageName : packageBuyed){
-                System.out.println("- " + packageName);
-            }
-        }
-
         System.out.println("--------------------------------------");
+        System.out.println("| ID: " + id);
+        System.out.println("| Name: " + name);
+        System.out.println("| Nationaly: " + nationality);
+        System.out.println("| Balance: " + balance);
+        System.out.println("--------------------------------------");
+       
+        if (packageBuyed.size() != 0){
+            System.out.println("|         Package Bought:            |");
+            System.out.println("======================================");
+            for (String packageName : packageBuyed){
+                System.out.println("| - " + packageName);
+            }
+            System.out.println("======================================");
+        }
     }
 
     public void buyPackage(String packageName) {

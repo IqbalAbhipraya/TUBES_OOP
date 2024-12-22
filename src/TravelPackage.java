@@ -1,5 +1,4 @@
-
-public abstract class TravelPackage {
+public class TravelPackage {
     protected int pacakageId;
     protected String packageName;
     protected String location;
@@ -25,10 +24,11 @@ public abstract class TravelPackage {
     }
 
     public void detailPackage(){
-        System.out.println("Package ID: " + pacakageId);
-        System.out.println("Destination: " + location);
-        System.out.println("Duration: " + days + " days");
-        System.out.println("Price: Rp. " + price + " /person");
-        System.out.println("Detail: " + details);
-    } 
+        System.out.println("| Package ID: " + pacakageId);
+        System.out.println("| Package Name: " + packageName);
+        System.out.println("| Destination: " + location);
+        System.out.println("| Duration: " + days + " days");
+        System.out.println("| Price: " + price +" /person");
+        System.out.println("| Detail: " + details);
+    }
 }

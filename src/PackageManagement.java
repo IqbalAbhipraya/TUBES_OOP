@@ -7,66 +7,73 @@ public class PackageManagement {
     ArrayList<Customer> customerList = new ArrayList<Customer>();
 
     public void addIndividualPackage(){
-        try {
+        try{
             int packageId = (packageList.size()) + 1;
-
-            System.out.print("Package Name: ");
+            System.out.println("======================================");
+            System.out.print("| Package Name: ");
             String packageName = input.nextLine();
-
-            System.out.print("Location: ");
+    
+            System.out.print("| Location: ");
             String location = input.nextLine();
-
-            System.out.print("Price: ");
+    
+            System.out.print("| Price: ");
             int price = input.nextInt();
-
-            System.out.print("Travel Duration: ");
-            int days = input.nextInt(); 
+    
+            System.out.print("| Travel Duration: ");
+            int days = input.nextInt();
             input.nextLine();
-            
-            System.out.print("Details: ");
+
+            System.out.print("| Details: ");
             String details = input.nextLine();
-
-            System.out.print("Add-On: ");
+    
+            System.out.print("| Add-On: ");
             String addOn = input.nextLine();
-
+            System.out.println("======================================");
+    
             packageList.add(new IndividualPackage(packageId, packageName, location, price, days, details, addOn));
+            System.out.println("Successfully add Individual Package");
             System.out.println();
         }catch (Exception e){
             System.out.println("The Input is Invalid, please enter valid input!!");
-        }
+        }     
     }
 
     public void addGroupPackage(){
         try{
             int packageId = (packageList.size()) + 1;
 
-            System.out.print("Package Name: ");
+            System.out.println("======================================");
+            System.out.print("| Package Name: ");
             String packageName = input.nextLine();
-
-            System.out.print("Location: ");
+    
+            System.out.print("| Location: ");
             String location = input.nextLine();
-
-            System.out.print("Price: ");
+    
+            System.out.print("| Price: ");
             int price = input.nextInt();
-
-            System.out.print("Travel Duration: ");
-            int days = input.nextInt(); 
+    
+            System.out.print("| Travel Duration: ");
+            int days = input.nextInt();
             input.nextLine();
             
-            System.out.print("Details: ");
+            System.out.print("| Details: ");
             String details = input.nextLine();
-
-            System.out.print("Minimum Number Participant: ");
-            int minNumber = input.nextInt(); 
-
-            System.out.print("Group Discount: ");
+    
+            System.out.print("| Minimum Number Participant: ");
+            int minNumber = input.nextInt();
+    
+            System.out.print("| Group Discount: ");
             int groupDiscount = input.nextInt();
             input.nextLine();
-
+            System.out.println("======================================");
+    
             packageList.add(new GroupPackage(packageId, packageName, location, price, days, details, minNumber, groupDiscount));
+            System.out.println("Successfully add Individual Package");
+            System.out.println();
         }catch (Exception e){
             System.out.println("The Input is Invalid, please enter valid input!!");
-        }     
+        }
+
     }
 
     public void showPackage() {
@@ -80,35 +87,37 @@ public class PackageManagement {
     }
 
     public void addCustomer() {
-        try {
+        try{
             int id = (customerList.size()) + 1;
-
-            System.out.print("Name: ");
+            System.out.println("======================================");
+            System.out.print("| Name: ");
             String name = input.nextLine();
-
-            System.out.print("Nationality: ");
+    
+            System.out.print("| Nationality: ");
             String nationality = input.nextLine();
-
-            System.out.print("Balance: ");
+    
+            System.out.print("| Balance: ");
             int balance = input.nextInt();
+    
             input.nextLine();
-
+            System.out.println("======================================");
+    
             customerList.add(new Customer(id, name, nationality, balance));
+            System.out.println("Successfully add Customer");
+            System.out.println();
         }catch (Exception e){
             System.out.println("The Input is Invalid, please enter valid input!!");
-        }  
+        }
     }
 
     public void showCustomer() {
         try{
-            System.out.println("--------------------------------------");
-
             for (Customer customer : customerList) {
                 customer.customerDetail();
-            }           
+            }
         }catch (Exception e){
             System.out.println("Error in the travel package");
-        }   
+        }
     }
 
     public void buyPackage() {
@@ -117,9 +126,10 @@ public class PackageManagement {
             if (customerObj == null){
                 return;
             }
-
             showPackage();
-            System.out.println("Choose the package: ");
+            System.out.println("======================================");
+            System.out.println("|         Choose the package:        |");
+            System.out.println("======================================");
             int choose = input.nextInt();
             input.nextLine();
     
@@ -129,14 +139,16 @@ public class PackageManagement {
                 IndividualPackage packaged = (IndividualPackage) packageChoosen;
                 if (payment(packaged, customerObj)){
                     customerObj.buyPackage(packaged.getPackageName());
+                }else{
+                    return;
                 }
-
+    
             }else if (packageChoosen instanceof GroupPackage){
                 GroupPackage packaged = (GroupPackage) packageChoosen;
                 System.out.println("How many will go with you: ");
                 int numParticipant = input.nextInt() + 1;
                 input.nextLine();
-
+    
                 if (numParticipant < packaged.getMinNumber()){
                     System.out.println("Error, Number of participant is less than the minimum required");
                     return;
@@ -144,8 +156,13 @@ public class PackageManagement {
                 
                 if (payment(packaged, customerObj, numParticipant)){
                     customerObj.buyPackage(packaged.getPackageName());
-                } 
+                }else{
+                    return;
+                }
+
             }
+            System.out.println("Successfully buy a Package");
+
         }catch (Exception e){
             System.out.println("Data Invalid");
         }
@@ -155,7 +172,10 @@ public class PackageManagement {
         try{
             Customer customerObj;
             showCustomer();
-            System.out.println("Who are you: ");
+            System.out.println("======================================");
+            System.out.println("|          Who are you:             |");
+            System.out.println("======================================");
+            System.out.print("Enter customer id: ");
             int choose = input.nextInt();
             input.nextLine();
     
@@ -164,17 +184,19 @@ public class PackageManagement {
                 if (choose == customerId){
                     customerObj = customer;
                     return customerObj;
-                } 
-            } 
-
-            System.out.println("The Customer ID is not found");
+                }
+            }
+    
+            System.out.println("======================================");
+            System.out.println("|   The Customer Id is not found    |");
+            System.out.println("======================================");
             return null;
         }catch (Exception e){
             System.out.println("Invalid Data");
             return null;
         }
     }
-
+    
     public boolean payment(IndividualPackage packageBuyed, Customer customerBuying){
         try{
             System.out.println("Total Payment: " + packageBuyed.getPrice());
@@ -210,7 +232,7 @@ public class PackageManagement {
             int total = (packageBuyed.getPrice() * numberParticipant) * (100-packageBuyed.getGroupDiscount()) / 100;
             System.out.println("Total :" + total);
             System.out.print("Input the amount of payent: ");
-            int paymentAmount = input.nextInt() * numberParticipant;
+            int paymentAmount = input.nextInt();
             input.nextLine();
 
             if (customerBuying.getBalance()-paymentAmount<0){
@@ -231,5 +253,21 @@ public class PackageManagement {
             System.out.println("Input is invalid");
             return false;
         }
+    }
+
+    public void topUpBalance(){
+        try{
+            Customer customerObj = loginCustomer();
+            if (customerObj == null){
+                return;
+            }
+            System.out.println("How many you want to Top-Up: ");
+            int newBalance = input.nextInt();
+            customerObj.topUp(newBalance);
+            System.out.println("Your new Balance is: " + customerObj.getBalance());   
+        }catch (Exception e){
+            System.out.println("Invalid input");
+        }
+     
     }
 }
