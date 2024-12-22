@@ -98,8 +98,8 @@ public class PackageManagement {
     
             System.out.print("| Balance: ");
             int balance = input.nextInt();
-    
             input.nextLine();
+            
             System.out.println("======================================");
     
             customerList.add(new Customer(id, name, nationality, balance));
@@ -262,8 +262,10 @@ public class PackageManagement {
                 return;
             }
             System.out.println("How many you want to Top-Up: ");
-            int newBalance = input.nextInt();
-            customerObj.topUp(newBalance);
+            int topUpBalance = input.nextInt();
+            input.nextLine();
+            
+            customerObj.topUp(topUpBalance);
             System.out.println("Your new Balance is: " + customerObj.getBalance());   
         }catch (Exception e){
             System.out.println("Invalid input");

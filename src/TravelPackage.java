@@ -1,4 +1,4 @@
-public class TravelPackage {
+public abstract class TravelPackage {
     protected int pacakageId;
     protected String packageName;
     protected String location;
