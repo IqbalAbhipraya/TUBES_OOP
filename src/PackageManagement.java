@@ -208,7 +208,10 @@ public class PackageManagement {
                 System.out.println("Your balance is not enough");
                 return false;
             }
-            if (paymentAmount < packageBuyed.getPrice()){
+            if (paymentAmount < 0){
+                System.out.println("The amount payment is in the negative");
+                return false;
+            }else if (paymentAmount < packageBuyed.getPrice()){
                 System.out.println("The amount payment is less then price");
                 return false;
             }
@@ -239,7 +242,10 @@ public class PackageManagement {
                 System.out.println("Your balance is not enough");
                 return false;
             }
-            if (paymentAmount < total){
+            if (paymentAmount < 0){
+                System.out.println("The amount payment is in the negative");
+                return false;
+            }else if (paymentAmount < total){
                 System.out.println("The amount payment is less then price");
                 return false;
             }
@@ -264,7 +270,7 @@ public class PackageManagement {
             System.out.println("How many you want to Top-Up: ");
             int topUpBalance = input.nextInt();
             input.nextLine();
-            
+
             customerObj.topUp(topUpBalance);
             System.out.println("Your new Balance is: " + customerObj.getBalance());   
         }catch (Exception e){
