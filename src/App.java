@@ -61,6 +61,7 @@ public class App {
                 }
             }catch (Exception e){
                 System.out.println("Invalid input");
+                input.nextLine();
             }
         }
         input.close(); 

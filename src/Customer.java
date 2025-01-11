@@ -82,7 +82,57 @@ public class Customer {
         }
     }
 
-    public void buyPackage(String packageName) {
-        packageBuyed.add(packageName);
+    public void buyPackage(TravelPackage packageChoosen, Customer customerObj) {
+        try{
+            PackageManagement packageManagement = new PackageManagement();
+
+            if (packageChoosen instanceof IndividualPackage){
+                IndividualPackage packaged = (IndividualPackage) packageChoosen;
+                if (packageManagement.payment(packaged, customerObj)){
+                    packageBuyed.add(packageChoosen.packageName);
+                }else{
+                    return;
+                }
+    
+            }else if (packageChoosen instanceof GroupPackage){
+                GroupPackage packaged = (GroupPackage) packageChoosen;
+                System.out.println("How many will go with you: ");
+                int numParticipant = input.nextInt() + 1;
+                input.nextLine();
+    
+                if (numParticipant < packaged.getMinNumber()){
+                    System.out.println("Error, Number of participant is less than the minimum required");
+                    return;
+                }
+                
+                if (packageManagement.payment(packaged, customerObj, numParticipant)){
+                    packageBuyed.add(packageChoosen.packageName);
+                }else{
+                    return;
+                }
+    
+            }        
+            System.out.println("Successfully buy a Package");
+        }catch (Exception e){
+            System.out.println("Data Invalid");
+        }
+    }
+
+    public void inputCustomerData(){
+        try{
+            System.out.println("======================================");
+            System.out.print("| Name: ");
+            this.name = input.nextLine();
+    
+            System.out.print("| Nationality: ");
+            this.nationality = input.nextLine();
+    
+            System.out.print("| Balance: ");
+            this.balance = input.nextInt();
+            input.nextLine();
+            System.out.println("======================================");
+        }catch (Exception e){
+            System.out.println("The Input is Invalid, please enter valid input!!");
+        }
     }
 }
