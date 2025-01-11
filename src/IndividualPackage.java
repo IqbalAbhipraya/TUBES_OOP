@@ -7,6 +7,14 @@ public class IndividualPackage extends TravelPackage{
         this.addOn = addOn;
     }
 
+    public String getAddOn() {
+        return addOn;
+    }
+
+    public void setAddOn(String addOn) {
+        this.addOn = addOn;
+    }
+
     @Override
     public void detailPackage(){
         System.out.println("--------------------------------------");
@@ -16,4 +24,6 @@ public class IndividualPackage extends TravelPackage{
         System.out.println("--------------------------------------");
 
     }
+
+
 }

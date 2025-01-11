@@ -68,7 +68,7 @@ public class PackageManagement {
             System.out.println("======================================");
     
             packageList.add(new GroupPackage(packageId, packageName, location, price, days, details, minNumber, groupDiscount));
-            System.out.println("Successfully add Individual Package");
+            System.out.println("Successfully add Group Package");
             System.out.println();
         }catch (Exception e){
             System.out.println("The Input is Invalid, please enter valid input!!");
@@ -261,21 +261,11 @@ public class PackageManagement {
         }
     }
 
-    public void topUpBalance(){
-        try{
-            Customer customerObj = loginCustomer();
-            if (customerObj == null){
-                return;
-            }
-            System.out.println("How many you want to Top-Up: ");
-            int topUpBalance = input.nextInt();
-            input.nextLine();
-
-            customerObj.topUp(topUpBalance);
-            System.out.println("Your new Balance is: " + customerObj.getBalance());   
-        }catch (Exception e){
-            System.out.println("Invalid input");
+    public void topUp(){
+        Customer customerLogin = loginCustomer();
+        if (customerLogin == null){
+            return;
         }
-     
+        customerLogin.topUpBalance();
     }
 }

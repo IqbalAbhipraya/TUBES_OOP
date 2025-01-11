@@ -9,13 +9,21 @@ public class GroupPackage extends TravelPackage {
         this.minNumber = minNumber;
         this.groupDiscount = groupDiscount;
     }
-
+    
     public int getMinNumber() {
         return minNumber;
     }
 
+    public void setMinNumber(int minNumber) {
+        this.minNumber = minNumber;
+    }
+
     public int getGroupDiscount() {
         return groupDiscount;
+    }
+
+    public void setGroupDiscount(int groupDiscount) {
+        this.groupDiscount = groupDiscount;
     }
 
     @Override

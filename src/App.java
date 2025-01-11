@@ -51,7 +51,7 @@ public class App {
                         packageManagement.showCustomer();
                         break;
                     case 6:
-                        packageManagement.topUpBalance();
+                        packageManagement.topUp();
                         break;
                     case 7:
                         break;

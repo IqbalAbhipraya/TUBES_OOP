@@ -15,12 +15,52 @@ public abstract class TravelPackage {
         this.details = details;
     }
 
-    public int getPrice() {
-        return price;
+    public int getPacakageId() {
+        return pacakageId;
+    }
+
+    public void setPacakageId(int pacakageId) {
+        this.pacakageId = pacakageId;
     }
 
     public String getPackageName() {
         return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public void detailPackage(){
